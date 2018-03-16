@@ -56,6 +56,11 @@ typedef union {
 #define c_ModeSleep		    3//关机.
 /*****************************Mode Define*************************/
 
+/**************************** CUSTOM *****************************/
+#define HEATING_ON       	1
+#define HEATING_OFF      	0
+/**************************** CUSTOM *****************************/
+
 /**************************** TIME *******************************/
 #define	C_50MS				 25		//2mS*25=50MS
 #define	C_100MS				 75		//2mS*50=150MS
@@ -88,7 +93,8 @@ typedef union {
 #define BATTERY_GAP 		15   //15
 #define BATTERY_GAP1 		27   //20
 #define BATTERY_CHGGAP 		270  //75 //U:0.1V <--> AD:27
-#define BAT_LVL_MAX  		10   //11//电池.
+#define BAT_LVL_MAX  		10   //电池.
+#define BAT_LVL_MIN  		0    //电池.level:0~10
 #define BAT_CHGLVL_MAX  	10   //11//插充电器.
 
 //Res AD 温度设置.

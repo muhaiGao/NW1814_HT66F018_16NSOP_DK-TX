@@ -84,16 +84,18 @@ void ModeSleep(void)
 {
 	fg_TempSet = 0;
 	//关闭加热片.
-	if(P_HEATING)P_HEATING = 0;//关闭加热.
+	P_HEATING = HEATING_OFF;//关闭加热.
 #if 1
 	//Digital tube	& LED
 	if(LED_PWM_T1ON){
 		LED_PWM_T1CP = 0;
 		LED_PWM_T1ON = 0;
 	}
-	if(!P_LED)P_LED = 1;//P_LED Off
+	P_LED = 1;//P_LED Off
 	fg_BlinkDigitalTube = 0;
-	P_DT_COM1 = P_DT_COM2 = P_DT_COM3 = 0;
+	P_DT_COM1 = 0;
+	P_DT_COM2 = 0;
+	P_DT_COM3 = 0;
 #endif
 	HaltMode_Init();
 	//INT1S1，INT1S0：INT1(PB1)脚中断边沿控制位,01:上升沿中断.
@@ -186,6 +188,7 @@ void TempDisplay_LevelPro(void)
 //===============================================================
 void LEDDisplay(void)
 {
+#if 0
 	if(c_ModeSleep == R_WorkMode)
 	{ 		
 		//Digital tube	& LED
@@ -198,6 +201,7 @@ void LEDDisplay(void)
 		P_DT_COM1 = P_DT_COM2 = P_DT_COM3 = 0;
 		return;
 	}
+#endif
 	
 	if (C_LED_BREATH != R_LedMode){
 		if(LED_PWM_T1ON){
@@ -215,7 +219,6 @@ void LEDDisplay(void)
 			
 		case C_LED_BREATH://呼吸灯.
 			if(!LED_PWM_T1ON){
-				P_LED = 0;
 				LED_PWM_T1CP = 1;
 				LED_PWM_T1ON = 1;
 				PWMChange(C_PWM_PERIO_INIT,C_PWM_DUTY_INIT);//为了减轻LED常亮到呼吸灯模式切换时的闪烁感,PWM占空比初始为100%.

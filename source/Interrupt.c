@@ -123,7 +123,7 @@ void MF1_ISR(void)
 			     R_LedDutyCycle++;
 			     _tm1al = R_LedDutyCycle ;
 				 _tm1ah = 0;   //Õ¼¿Õ±È¼Ä´æÆ÷
-			     if(R_LedDutyCycle>=185)	{
+			     if(R_LedDutyCycle>=185){//C_PWM_PERIO_INIT
 			     	R_LedDirFlag = 0;		
 			     }
 			}else{

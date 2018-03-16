@@ -86,14 +86,14 @@ void NTC_AD_Dete(void)
 
 	//拔掉加热片时,关闭输出,若加热模式则显示设置温度.
 	if (fg_NoNTC){
-		R_intHeatingPWM2ms = 500;
+		R_intHeatingPWM2ms = C_1S;
 		R_intTempDisplayLevel = R_intRESTempSet;
 		return;
 	}
 
 	//设置温度小于60摄氏度,不加热,直接退出函数.
 	if(R_intRESTempSet < TEMP_SET_MIN){
-		R_intHeatingPWM2ms = 500;
+		R_intHeatingPWM2ms = C_1S;
 		return;
 	}
 	
@@ -185,15 +185,15 @@ void NTC_AD_Dete(void)
 						   ((R_intRESTempSet+4) >= R_intNTC_CurrentTemp)){
 							R_intHeatingPWM2ms = 300;
 						}else if((R_intRESTempSet+6) <= R_intNTC_CurrentTemp){
-							R_intHeatingPWM2ms = 500;
+							R_intHeatingPWM2ms = C_1S;
 						} 
 					}else  if(110 <= R_intRESTempSet){
 						R_intHeatingPWM2ms = Table_HeatingTimeData[tmp-2];
 						if((R_intRESTempSet+3) <= R_intNTC_CurrentTemp){
-							R_intHeatingPWM2ms = 500;
+							R_intHeatingPWM2ms = C_1S;
 						}
 					}else{
-						R_intHeatingPWM2ms = 500;
+						R_intHeatingPWM2ms = C_1S;
 					}
 					
 					if(R_intHeatingPWM2ms < Table_HeatingTimeData[tmp-2]){
@@ -217,7 +217,7 @@ void NTC_AD_Dete(void)
 					}
 					
 					if((R_intRESTempSet+5) <= R_intNTC_CurrentTemp){
-						R_intHeatingPWM2ms = 500;
+						R_intHeatingPWM2ms = C_1S;
 					} 
 				}
 			}
@@ -368,7 +368,7 @@ void BatAD_Dete(void)
 					R_BatLevel_Count2++;
 					if(R_BatLevel_Count2 >= 5){
 						R_BatLevel_Count2 = 0;
-						R_BatLevel = 0;
+						R_BatLevel = BAT_LVL_MIN;
 					}
 				}else{
 				    R_BatLevel_Count2 = 0;
@@ -419,7 +419,7 @@ void BatAD_Dete(void)
 					}
 					if ((c_ModeBatterLow == R_WorkMode) ||(c_ModeSleep == R_WorkMode)){
 						if ((R_intBatADValue < Table_BatChargeLevel[1])){
-							R_BatLevel = 0;
+							R_BatLevel = BAT_LVL_MIN;
 						}
 					}
 				}
@@ -434,7 +434,7 @@ void BatAD_Dete(void)
 					R_BatLevel_Count2++;
 					if(R_BatLevel_Count2 >= 5){
 						R_BatLevel_Count2 = 0;
-						R_BatLevel = 0;
+						R_BatLevel = BAT_LVL_MIN;
 					}
 				}else{
 				    R_BatLevel_Count2 = 0;
@@ -483,7 +483,7 @@ void BatAD_Dete(void)
 					}
 					if ((c_ModeBatterLow == R_WorkMode) ||(c_ModeSleep == R_WorkMode)){
 						if ((R_intBatADValue < Table_BatLevel[1])){
-							R_BatLevel = 0;
+							R_BatLevel = BAT_LVL_MIN;
 						}
 					}
 				}
@@ -496,11 +496,11 @@ void BatAD_Dete(void)
 		}
 
 //		if((fg_PowerIn) && (R_BatLevel >= 1) && (R_BatLevel <= 9)){
-		if((fg_PowerIn) && (R_BatLevel <= 9)){
+		if((fg_PowerIn) && (R_BatLevel < BAT_LVL_MAX)){
 			if((c_ModeInit == R_WorkMode) ||(c_ModeBatterLow == R_WorkMode)){
 			   //正在充电,LED呼吸灯.
 			   R_LedMode = C_LED_BREATH;
-			   if (0 == R_BatLevel){
+			   if (BAT_LVL_MIN == R_BatLevel){
 				   fg_BatDetePowerOn = 1;
 			   }
 			}else{
@@ -513,7 +513,7 @@ void BatAD_Dete(void)
 				//R_WorkMode = c_ModeInit;
 			}
 			
-		}else if((R_BatLevel >= 10) ||((0 == fg_PowerIn) && (R_BatLevel >= 1) && (R_BatLevel <= 9))){
+		}else if((R_BatLevel >= BAT_LVL_MAX) ||((0 == fg_PowerIn) && (R_BatLevel > BAT_LVL_MIN) && (R_BatLevel < BAT_LVL_MAX))){
 		   //充满电或不充电但电量>=1,LED常亮.
 		   R_LedMode = C_LED_ON;
 		}else{
@@ -528,7 +528,7 @@ void BatAD_Dete(void)
 			}
 		}
 
-		if(((c_ModeSleep == R_WorkMode)||(c_ModeBatterLow == R_WorkMode))&&(R_BatLevel >= 1)){
+		if(((c_ModeSleep == R_WorkMode)||(c_ModeBatterLow == R_WorkMode))&&(R_BatLevel > BAT_LVL_MIN)){
 			R_WorkMode = c_ModeInit;
 		}
 		R_intBatADValue = 0;

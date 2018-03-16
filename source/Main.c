@@ -45,7 +45,7 @@ void main(void)
 			case c_ModeInit:
 				if(fg_150ms){
 					fg_150ms = 0;
-					P_HEATING = 0;//关闭加热.
+					P_HEATING = HEATING_OFF;//关闭加热.
 //					BatAD_Dete();//电压检测.
 					Battery_LevelPro();
 					if(R_BatLevelUp >= R_BatLevel){
@@ -114,15 +114,15 @@ void main(void)
 			if(R_intTime1sCount >= C_1S){//Timing 1s
 				R_intTime1sCount = 0;
 				fg_1s = 1;
-				P_HEATING = 0;//关闭加热.
+				P_HEATING = HEATING_OFF;//关闭加热.
 				BatAD_Dete();//关闭加热后电池电压检测.
 			}
 			if((c_ModeHeating == R_WorkMode) || (c_ModeBatterLow == R_WorkMode)){
 				if (R_intTime1sCount >= R_intHeatingPWM2ms){
-					P_HEATING = 1;//加热.
+					P_HEATING = HEATING_ON;//加热.
 				}
 			}else{
-				P_HEATING = 0;//关闭加热.
+				P_HEATING = HEATING_OFF;//关闭加热.
 			}
 		}
 		

@@ -598,16 +598,16 @@ void User_Init(void)
 	/*Flag*/
 	flag0Byte = 0x00;
 	flag1Byte = 0x00;
-//	TimeFlag0Byte = 0x00;
+	TimeFlag0Byte = 0x00;
 	fg_LedByte = 0x00;
 	display_data1 = 0x00;
 	display_data2 = 0x00;
 	display_data3 = 0x00;
 
 	/*IO Setting*/
-	P_HEATING   = 0;//关闭加热,=0 关闭, =1 打开加热.
+	P_HEATING   = HEATING_OFF;//关闭加热,=0 关闭, =1 打开加热.
 	P_HEATING_C = 0;
-	P_LED = 1;//开机LED 灭
+	P_LED = 0;//开机LED on
 	P_LED_C = 0;
 	if(!LED_PWM_T1ON){
 		P_LED = 0;
@@ -618,9 +618,7 @@ void User_Init(void)
 	
 	/*Variable*/
 	R_intResAD_Value = 0;
-	R_BatLevel = 0;
 	R_BatLevelUp = 0;
-	fg_BatLvlInitStart = 0;
 	fg_BatDetePowerOn = 1;
 	
 	fg_PowerIn = 1;
@@ -685,8 +683,8 @@ void Variable_Init(void)
 	R_BatLevel_Count2 = 0;
 	R_BatLevel_Count3 = 0;
 	//R_BatLevel:实际电池电压等级,R_BatLevelUp:控制显示电池电压按顺序0~R_BatLevel.
-	R_BatLevel = 0;
-	R_BatLevelUp = 0;
+	R_BatLevel = BAT_LVL_MIN;
+	R_BatLevelUp = BAT_LVL_MIN;
 	R_Time2Min_BTLow = 0;
 
 	//NTC AD
