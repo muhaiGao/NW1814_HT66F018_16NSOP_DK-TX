@@ -12,18 +12,18 @@ void Function_Task(void)
 }
 
 #if 0
-void Mode_Set(unsigned char new_mode)
+void Mode_Set(u8 new_mode)
 {
 	prev_mode = R_WorkMode;
 	R_WorkMode = new_mode;
 }
 
- unsigned char Mode_Get(void)
+ u8 Mode_Get(void)
 {
 	return R_WorkMode;
 }
  
- unsigned char PrevMode_Get(void)
+ u8 PrevMode_Get(void)
  {
 	 return prev_mode;
  }
@@ -245,10 +245,10 @@ void LEDDisplay(void)
 //output  :	NULL.
 //description: PWM周期和占空比调整.
 //===============================================================
-void PWMChange(unsigned int Period,unsigned char DutyCycle)
+void PWMChange(u16 Period,u8 DutyCycle)
 {
  	//Period周期单位为2uS,Period取值范围是1~1024,DutyCycle取值范围是1~100
-	unsigned int Duty;
+	u16 Duty;
 	_tm1rpl = Period%256;		//周期寄存器
 	_tm1rph = Period>>8;// 256		
 

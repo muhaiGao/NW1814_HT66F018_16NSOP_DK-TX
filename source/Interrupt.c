@@ -112,7 +112,7 @@ void MF0_ISR(void)
 //===============================================================
 void MF1_ISR(void)
 {
-    static unsigned char i = 0;	
+    static u8 i = 0;	
 	_t1af=0; //清除中断标志位	
 	if(_t1pf){
 		_t1pf = 0;

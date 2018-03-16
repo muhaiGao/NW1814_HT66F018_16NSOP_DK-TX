@@ -6,11 +6,11 @@
 //output  :	u16_12ADCTemp: 12位的AD值
 //description:每调用一次,ADC采样    ReadADC_Cnt次,去掉最大值和最小值,再取平均值.
 //====================================================================
-unsigned int ADC_GetChannelVal(unsigned int R_AdcChannel)
+u16 ADC_GetChannelVal(u16 R_AdcChannel)
 {
-	unsigned char ReadADC_Cnt = 4;
-	unsigned int u16_12ADCTemp = 0;
-	unsigned int ADC_Sum = 0,R_ADC_Max = 0,R_ADC_Min = 0xfffe;
+	u8 ReadADC_Cnt = 4;
+	u16 u16_12ADCTemp = 0;
+	u16 ADC_Sum = 0,R_ADC_Max = 0,R_ADC_Min = 0xfffe;
 	
 	switch(R_AdcChannel)
 	{
@@ -45,8 +45,8 @@ unsigned int ADC_GetChannelVal(unsigned int R_AdcChannel)
 		_start = 0;
 		GCC_NOP();
 		while (_eocb);
-		u16_12ADCTemp = (unsigned int)_adrl;
-		u16_12ADCTemp |= (unsigned int)((_adrh&0x0f)<<8);
+		u16_12ADCTemp = (u16)_adrl;
+		u16_12ADCTemp |= (u16)((_adrh&0x0f)<<8);
 		ADC_Sum += u16_12ADCTemp;
 		if(R_ADC_Max < u16_12ADCTemp) R_ADC_Max = u16_12ADCTemp;
 		if(R_ADC_Min > u16_12ADCTemp) R_ADC_Min = u16_12ADCTemp;
@@ -66,7 +66,7 @@ unsigned int ADC_GetChannelVal(unsigned int R_AdcChannel)
 //============================================================================
 void NTC_AD_Dete(void)
 {
-	unsigned int ntc_ad_data = ADC_GetChannelVal(C_ADC_CH3);
+	u16 ntc_ad_data = ADC_GetChannelVal(C_ADC_CH3);
 		
 	//判断是否插上NTC(或者说加热片).
 	if(ntc_ad_data >= NTC_AD_DETE){//4060
@@ -100,7 +100,7 @@ void NTC_AD_Dete(void)
 	R_intNTC_ADVal += ntc_ad_data;
 	if(++R_NTC_AD_Count >= 8)
 	{
-		unsigned char i,tmp;
+		u8 i,tmp;
 		R_NTC_AD_Count = 0;
 		R_intNTC_ADVal = R_intNTC_ADVal>>3;
 		ntc_ad_data = R_intNTC_ADVal;
@@ -238,11 +238,11 @@ void NTC_AD_Dete(void)
 //output  :	NULL
 //description:设置温度的档位调节.
 //====================================================================
-unsigned int R_ADC_Max = 0,R_ADC_Min = 0xfffe;
+u16 R_ADC_Max = 0,R_ADC_Min = 0xfffe;
 void ResAD_Dete(void)
 {
-	unsigned int i,k;
-	unsigned int u16_12ADCTemp;
+	u16 i,k;
+	u16 u16_12ADCTemp;
 	u16_12ADCTemp = ADC_GetChannelVal(C_ADC_CH2);
 	R_intResAD_Value += u16_12ADCTemp;
 	if(R_ADC_Max < u16_12ADCTemp) R_ADC_Max = u16_12ADCTemp;
@@ -356,7 +356,7 @@ void ResAD_Dete(void)
 //====================================================================
 void BatAD_Dete(void)
 {
-	unsigned char i;
+	u8 i;
 	R_intBatADValue = ADC_GetChannelVal(C_ADC_CH0);
 
 		if(fg_PowerIn){

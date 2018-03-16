@@ -3,18 +3,18 @@
 #include <HT66F018.h>
 //================== macro define ================
 typedef unsigned char __sfr_byte;
-typedef unsigned int	uint;
-typedef unsigned char	uchar;
+typedef unsigned char	u8;
+typedef unsigned int	u16;
 
 typedef struct {
-	unsigned char b0 : 1;
-	unsigned char b1 : 1;
-	unsigned char b2 : 1;
-	unsigned char b3 : 1;
-	unsigned char b4 : 1;
-	unsigned char b5 : 1;
-	unsigned char b6 : 1;
-	unsigned char b7 : 1;
+	u8 b0 : 1;
+	u8 b1 : 1;
+	u8 b2 : 1;
+	u8 b3 : 1;
+	u8 b4 : 1;
+	u8 b5 : 1;
+	u8 b6 : 1;
+	u8 b7 : 1;
 } __flag_bits;
 
 typedef union {
@@ -76,7 +76,7 @@ typedef union {
 #define C_LED_ON					1
 #define C_LED_FLASH					2
 #define C_LED_BREATH				3	 //LED呼吸灯模式.
-#define C_LED_BREATH_SPEED 		    17   //Breathing light 呼吸灯亮灭速度控制 值越小速度越快.
+#define C_LED_BREATH_SPEED 		    17   //Breathing light 呼吸灯亮灭速度控制 值越小速度越快.//注意控制i类型的范围.
 //Period周期单位为2uS,Period取值范围是1~1024,DutyCycle取值范围是0~Period
 #define C_PWM_PERIO_INIT			200
 #define C_PWM_DUTY_INIT				200

@@ -14,7 +14,7 @@
 //--0---- 本部函数声明 -------------------------
 
 //--1---- 外部函数声明 -------------------------
-uchar EEPROM_Read (unsigned char addr_data);
-void EEPROM_Write (unsigned char addr_data,unsigned char data);
+u8 EEPROM_Read (u8 addr_data);
+void EEPROM_Write (u8 addr_data,u8 data);
 
 #endif 			//__EERPOM_H__

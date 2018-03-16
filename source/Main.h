@@ -26,7 +26,7 @@ extern void Power_StatusDete(void);
 extern void Battery_LevelPro(void);
 extern void TempDisplay_LevelPro(void);
 extern void LEDDisplay(void);
-extern void PWMChange(unsigned int Period,unsigned char DutyCycle);
+extern void PWMChange(u16 Period,u8 DutyCycle);
 extern void DataProcessing(void);
 extern void Time_Base(void);
 

@@ -74,49 +74,49 @@ extern volatile __flag_type  _display_data3;
 #define F_display_data3_l6         _display_data3.bits.b5
 #define F_display_data3_l7         _display_data3.bits.b6
 
-extern unsigned char R_WorkMode/*,prev_mode*/;
+extern u8 	R_WorkMode/*,prev_mode*/;
 
 //LED
-extern unsigned char R_LedMode;		//LED 显示模式.
-extern unsigned char R_LedDirFlag;           //呼吸灯亮灭方向标志
-extern unsigned char R_LedDutyCycle;         //用于存放占空比
+extern u8 	R_LedMode;		//LED 显示模式.
+extern u8 	R_LedDirFlag;           //呼吸灯亮灭方向标志
+extern u8 	R_LedDutyCycle;         //用于存放占空比
 
 //Temperature
-extern unsigned int  R_intTempDisplayLevel;//显示温度,控制按一定的相隔时间显示到设置的温度.
+extern u16 	R_intTempDisplayLevel;//显示温度,控制按一定的相隔时间显示到设置的温度.
 
 //==============Timing==================//
-extern unsigned char R_Time100msCount;//时间计数器
-extern unsigned char R_Time50msCount;//时间计数器
-extern unsigned char R_Time150msCount;//时间计数器
-extern unsigned char R_Time700msCount;//时间计数器
-extern unsigned int  R_intTime1sCount;
-extern unsigned char R_Time2sCount;
+extern u8 	R_Time100msCount;//时间计数器
+extern u8 	R_Time50msCount;//时间计数器
+extern u8 	R_Time150msCount;//时间计数器
+extern u8 	R_Time700msCount;//时间计数器
+extern u16  R_intTime1sCount;
+extern u8 	R_Time2sCount;
 
 //Resistance AD Seting Temp value display.
-extern unsigned int  R_intResAD_Value,R_intResAD_ValueBak;
-extern unsigned int  R_intRESTempSet, R_intRESTempSetCopy;//设置的温度值.
-extern unsigned char R_UpdateTempSetCount;
-extern unsigned char R_Low60Count;
-extern unsigned char R_ResADCount;
-extern unsigned char R_ModeChgCount;
-extern unsigned char R_TimeResTempSetDisplay;
+extern u16  R_intResAD_Value,R_intResAD_ValueBak;
+extern u16  R_intRESTempSet, R_intRESTempSetCopy;//设置的温度值.
+extern u8 	R_UpdateTempSetCount;
+extern u8 	R_Low60Count;
+extern u8 	R_ResADCount;
+extern u8 	R_ModeChgCount;
+extern u8 	R_TimeResTempSetDisplay;
 
 //Battery AD 
-extern unsigned int  R_intBatADValue;
-extern unsigned char R_BatLevel_Count0;
-extern unsigned char R_BatLevel_Count1;
-extern unsigned char R_BatLevel_Count2;
-extern unsigned char R_BatLevel_Count3;
-extern unsigned char R_BatLevel,R_BatLevelUp;
+extern u16  R_intBatADValue;
+extern u8 	R_BatLevel_Count0;
+extern u8 	R_BatLevel_Count1;
+extern u8 	R_BatLevel_Count2;
+extern u8 	R_BatLevel_Count3;
+extern u8 	R_BatLevel,R_BatLevelUp;
 
 //NTC AD
-//extern unsigned char R_NTCTempCECount;
-extern unsigned char R_NoNTCCount;
-extern unsigned int  R_intNTC_ADVal;
+//extern u8 R_NTCTempCECount;
+extern u8 	R_NoNTCCount;
+extern u16  R_intNTC_ADVal;
 
-extern unsigned char R_PowerInCount;
-extern unsigned char R_DigitalTubeDisplayLoop;
-extern unsigned char led_display_data1,led_display_data2,led_display_data3;
+extern u8 	R_PowerInCount;
+extern u8 	R_DigitalTubeDisplayLoop;
+extern u8 	led_display_data1,led_display_data2,led_display_data3;
 
 //volatile static unsigned int Table_bt_ad_data[9]__attribute__((at(0x1a0))); 
 //volatile static unsigned int Table_res_ad_data[9]__attribute__((at(0x1c0))); 
@@ -131,20 +131,20 @@ extern unsigned char led_display_data1,led_display_data2,led_display_data3;
 //volatile static unsigned int ntc_ad_data_cmp __attribute__((at(0x1bb)));
 ///////////volatile static unsigned char R_Time2Min_BTLow __attribute__((at(0x1bd)));
 //volatile static unsigned int ntc_ad_data __attribute__((at(0x1be)));
-extern unsigned int  R_intHeatingPWM2ms;
-extern unsigned int  R_intNTC_CurrentTemp;//NTC 当前温度值.
-extern unsigned char R_NTC_AD_Count;
-extern unsigned char R_Time2Min_BTLow;
+extern u16  R_intHeatingPWM2ms;
+extern u16  R_intNTC_CurrentTemp;//NTC 当前温度值.
+extern u8 	R_NTC_AD_Count;
+extern u8 	R_Time2Min_BTLow;
 
 
 //Table表声明.
-extern const unsigned char Table_DigitalTube[13];
-extern const unsigned int  Table_BatChargeLevel[BAT_CHGLVL_MAX];
-extern const unsigned int  Table_BatLevel[BAT_LVL_MAX];
-extern const unsigned int  Table_ResData[TABLE_RES_MAX];
-extern const unsigned int  Table_NTC_Data[TABLE_NTC_MAX];
-//extern const unsigned int  Table_NTC_Data[251];
-extern const unsigned int  Table_HeatingTimeData[26];
+extern const u8   Table_DigitalTube[13];
+extern const u16  Table_BatChargeLevel[BAT_CHGLVL_MAX];
+extern const u16  Table_BatLevel[BAT_LVL_MAX];
+extern const u16  Table_ResData[TABLE_RES_MAX];
+extern const u16  Table_NTC_Data[TABLE_NTC_MAX];
+//extern const u16  Table_NTC_Data[251];
+extern const u16  Table_HeatingTimeData[26];
 
 #if 0
 README:

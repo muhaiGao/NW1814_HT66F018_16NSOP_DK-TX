@@ -15,7 +15,7 @@ void Power_StatusDete(void);
 void Battery_LevelPro(void);
 void TempDisplay_LevelPro(void);
 void LEDDisplay(void);
-void PWMChange(unsigned int Period,unsigned char DutyCycle);
+void PWMChange(u16 Period,u8 DutyCycle);
 void DataProcessing(void);
 void TimingFun(void);
 

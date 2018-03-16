@@ -5,9 +5,9 @@
 ////===============================================================
 ////void EEPROM_Read (void)
 ////===============================================================
-uchar EEPROM_Read (unsigned char addr_data)
+u8 EEPROM_Read (u8 addr_data)
 {
-	unsigned char read_data;
+	u8 read_data;
 	
 	_eea = addr_data;
     
@@ -42,7 +42,7 @@ uchar EEPROM_Read (unsigned char addr_data)
 ////===============================================================
 ////void EEPROM_Write (void)
 ////===============================================================
-void EEPROM_Write (unsigned char addr_data,unsigned char data)
+void EEPROM_Write (u8 addr_data,u8 data)
 {
 	_eea = addr_data;
  	_eed = data;

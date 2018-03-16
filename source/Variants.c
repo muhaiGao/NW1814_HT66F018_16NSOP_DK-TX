@@ -34,54 +34,54 @@ volatile __flag_type  _display_data1;
 volatile __flag_type  _display_data2;
 volatile __flag_type  _display_data3;
 ////////
-unsigned char R_WorkMode/*,prev_mode*/;	
+u8 	R_WorkMode/*,prev_mode*/;	
 
 //LED
-unsigned char R_LedMode;		      //LED 显示模式.
-unsigned char R_LedDirFlag;           //呼吸灯亮灭方向标志
-unsigned char R_LedDutyCycle;         //用于存放占空比
+u8 	R_LedMode;		      //LED 显示模式.
+u8 	R_LedDirFlag;           //呼吸灯亮灭方向标志
+u8 	R_LedDutyCycle;         //用于存放占空比
 
 //Temperature
-unsigned int  R_intTempDisplayLevel;//显示温度,控制按一定的相隔时间显示到设置的温度.
+u16  R_intTempDisplayLevel;//显示温度,控制按一定的相隔时间显示到设置的温度.
 //==============Timing==================//
-unsigned char R_Time50msCount; //时间计数器
-unsigned char R_Time100msCount;//时间计数器
-unsigned char R_Time150msCount;//时间计数器
-unsigned char R_Time700msCount;//时间计数器
-unsigned int  R_intTime1sCount;//时间计数器
-unsigned char R_Time2sCount;   //时间计数器
-unsigned int  R_intHeatingPWM2ms;
+u8 	R_Time50msCount; //时间计数器
+u8 	R_Time100msCount;//时间计数器
+u8 	R_Time150msCount;//时间计数器
+u8 	R_Time700msCount;//时间计数器
+u16 R_intTime1sCount;//时间计数器
+u8 	R_Time2sCount;   //时间计数器
+u16 R_intHeatingPWM2ms;
 
 //Resistance AD Seting Temp value display.
-unsigned int  R_intResAD_Value,R_intResAD_ValueBak;
-unsigned int  R_intRESTempSet,R_intRESTempSetCopy;//设置的温度值.
-unsigned char R_UpdateTempSetCount;//是否需要更新设置温度值的记数.
-unsigned char R_Low60Count;
-unsigned char R_ResADCount;
-unsigned char R_ModeChgCount;//是否需要更新到加热模式.
-unsigned char R_TimeResTempSetDisplay;//设置温度的显示时间,超过此时间变成显示当前温度.
+u16	R_intResAD_Value,R_intResAD_ValueBak;
+u16	R_intRESTempSet,R_intRESTempSetCopy;//设置的温度值.
+u8	R_UpdateTempSetCount;//是否需要更新设置温度值的记数.
+u8 	R_Low60Count;
+u8 	R_ResADCount;
+u8 	R_ModeChgCount;//是否需要更新到加热模式.
+u8 	R_TimeResTempSetDisplay;//设置温度的显示时间,超过此时间变成显示当前温度.
 
 //Battery AD 
-unsigned int  R_intBatADValue;
-unsigned char R_BatLevel_Count0;
-unsigned char R_BatLevel_Count1;
-unsigned char R_BatLevel_Count2;
-unsigned char R_BatLevel_Count3;
+u16 R_intBatADValue;
+u8 	R_BatLevel_Count0;
+u8 	R_BatLevel_Count1;
+u8 	R_BatLevel_Count2;
+u8 	R_BatLevel_Count3;
 //R_BatLevel:实际电池电压等级,R_BatLevelUp:控制显示电池电压按顺序0~R_BatLevel.
-unsigned char R_BatLevel,R_BatLevelUp;
-unsigned char R_Time2Min_BTLow;//电量低计时变量,2min钟后进入休眠状态.
+u8 	R_BatLevel,R_BatLevelUp;
+u8 	R_Time2Min_BTLow;//电量低计时变量,2min钟后进入休眠状态.
 
 //NTC AD
-//unsigned char R_NTCTempCECount;//为了避免实时显示的温度值上下波动的显示问题.
-unsigned char R_NoNTCCount;
-unsigned int  R_intNTC_ADVal;
-unsigned char R_NTC_AD_Count;
-unsigned int  R_intNTC_CurrentTemp;//NTC 当前温度值.
+//u8 R_NTCTempCECount;//为了避免实时显示的温度值上下波动的显示问题.
+u8 	R_NoNTCCount;
+u16 R_intNTC_ADVal;
+u8 	R_NTC_AD_Count;
+u16 R_intNTC_CurrentTemp;//NTC 当前温度值.
 
-unsigned char R_PowerInCount;
-unsigned char R_DigitalTubeDisplayLoop;//循环显示数码管每一段的计数:a,b,c,d,e,f,g.
-unsigned char led_display_data1,led_display_data2,led_display_data3;
-const unsigned char Table_DigitalTube[13]={0x3f,0X06,0X5b,0X4F,0X66,0X6D,0X7D,0X07,0X7F,0X6F,
+u8 	R_PowerInCount;
+u8 	R_DigitalTubeDisplayLoop;//循环显示数码管每一段的计数:a,b,c,d,e,f,g.
+u8 	led_display_data1,led_display_data2,led_display_data3;
+const u8 Table_DigitalTube[13]={0x3f,0X06,0X5b,0X4F,0X66,0X6D,0X7D,0X07,0X7F,0X6F,
                                           // 0    1    2    3    4    5    6    7    8    9 
                                            0X40,0x79,0x00
                                           // -   E   无显示
@@ -91,7 +91,7 @@ const unsigned char Table_DigitalTube[13]={0x3f,0X06,0X5b,0X4F,0X66,0X6D,0X7D,0X
 
 #if 0
 //插充电器,电源电压(V): 样机T507=> 9.3V~12.5V
-//const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
+//const u16 Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 //	1775,//6.5V
 //	2540,//9.3V
 //	2785,//10.2V
@@ -106,7 +106,7 @@ const unsigned char Table_DigitalTube[13]={0x3f,0X06,0X5b,0X4F,0X66,0X6D,0X7D,0X
 //	3413 //12.5V
 //};
 //没插充电器,电池电压(V):样机T507=> 9.3V~11.9V
-const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
+const u16 Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 //	2540,//9.3V
 	1775,//6.5V
 	2785,//10.2V
@@ -125,7 +125,7 @@ const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 
 #if 0
 //插充电器,电源电压(V):
-const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
+const u16 Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 //	2540,//9.3V
 	1775,//1.  6.5V
 	2840,//2.  10.4V
@@ -141,7 +141,7 @@ const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 };
 
 //没插充电器,电池电压(V):
-const unsigned int Table_BatLevel[BAT_LVL_MAX+1]={
+const u16 Table_BatLevel[BAT_LVL_MAX+1]={
 	2512,//1.  9.2V
 	2758,//2.  10.1V
 	2813,//3.  10.3V
@@ -156,7 +156,7 @@ const unsigned int Table_BatLevel[BAT_LVL_MAX+1]={
 };
 #endif
 //插充电器,电源电压(V):
-const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
+const u16 Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 //	2540,//9.3V
 //	1775,//1.  6.5V
 	2048,//1.  7.5V
@@ -175,7 +175,7 @@ const unsigned int Table_BatChargeLevel[BAT_CHGLVL_MAX+1]={
 };
 
 //没插充电器,电池电压(V):
-const unsigned int Table_BatLevel[BAT_LVL_MAX+1]={
+const u16 Table_BatLevel[BAT_LVL_MAX+1]={
 	2512,//1.  9.2V
 	2731,//2.  10.0V
 	2813,//3.  10.3V
@@ -193,7 +193,7 @@ const unsigned int Table_BatLevel[BAT_LVL_MAX+1]={
 
 #endif
 
-const unsigned int Table_ResData[TABLE_RES_MAX]={
+const u16 Table_ResData[TABLE_RES_MAX]={
 /*200, 	219,	238,*//*257*/RES_AD_MIN,  /*276,*/ 	295, 	314, 	333,	352, 	371,
 390, 	409,	428,	447,	466, 	485, 	504, 	523,	542, 	561,
 580, 	599,	618,	637,	656, 	675, 	694, 	713,	732, 	751,
@@ -220,7 +220,7 @@ const unsigned int Table_ResData[TABLE_RES_MAX]={
 };
 
 #if 0
-const unsigned int Table_NTC_Data[TABLE_NTC_MAX]={
+const u16 Table_NTC_Data[TABLE_NTC_MAX]={
 		/*10摄氏度到59摄氏度没用到,只是平均填数字,后期考虑去掉(0-59:4001-3508)*/
 /*10*/ /*4001,	3991,	3981,	3971,	3961,	3951,	3940,	3930,	3920,	3910,*/
 /*20*/ /*3900,	3890,	3880,	3870,	3860,	3850,	3840,	3830,	3820,	3810,*/
@@ -254,7 +254,7 @@ const unsigned int Table_NTC_Data[TABLE_NTC_MAX]={
 #else
 //温度测试基本可以
 //调整.
-const unsigned int Table_NTC_Data[TABLE_NTC_MAX]={
+const u16 Table_NTC_Data[TABLE_NTC_MAX]={
 /*10摄氏度到59摄氏度没用到,只是平均填数字,后期考虑去掉(0-59:4001-3508)*/
 /*10*/ 4001,	3991,	3981,	3971,	3961,	3951,	3940,	3930,	3920,	3910,
 /*20*/ 3900,	3890,	3880,	3870,	3860,	3850,	3840,	3830,	3820,	3810,
@@ -289,7 +289,7 @@ const unsigned int Table_NTC_Data[TABLE_NTC_MAX]={
 
 #if 1
 //调整.
-const unsigned int Table_HeatingTimeData[26]={
+const u16 Table_HeatingTimeData[26]={
 	500,//保留
 	460,//保留
 	440,//60//11.2V电池电压实际测试数据.60(455)~190(50).
@@ -319,7 +319,7 @@ const unsigned int Table_HeatingTimeData[26]={
 };
 #else
 //测量结果
-const unsigned int Table_HeatingTimeData[25]={
+const u16 Table_HeatingTimeData[25]={
 	500,//保留
 	480,//保留
 	460,//455,//60//11.2V电池电压实际测试数据.60(455)~190(50).

@@ -4,7 +4,7 @@
 #include "MyDefine.h"
 #include "variants.h"
 
-unsigned int ADC_GetChannelVal(unsigned int R_AdcChannel);
+u16 ADC_GetChannelVal(u16 R_AdcChannel);
 void NTC_AD_Dete(void);
 void ResAD_Dete(void);
 void BatAD_Dete(void);

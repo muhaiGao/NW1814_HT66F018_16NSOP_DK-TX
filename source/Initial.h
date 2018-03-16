@@ -14,7 +14,7 @@ void TimeSet_Init(void);
 void Variable_Init(void);
 
 //--1---- 外部函数声明 -------------------------
-extern void PWMChange(unsigned int Period,unsigned char DutyCycle);
+extern void PWMChange(u16 Period,u8 DutyCycle);
 extern void Power_StatusDete(void);
 extern void BatAD_Dete(void);
 

@@ -579,7 +579,7 @@ void RAM_Init()
 //description:用户初始化变量.
 void User_Init(void)
 {
-	unsigned char i;
+	u8 i;
 	
 	/*INT Enbale*/
 //	_mf0e = 1;
