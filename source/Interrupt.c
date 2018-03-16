@@ -16,15 +16,15 @@
 //output  :	NULL.
 //description:中断2ms,Timing.
 // 			   3组合数码管,共阳. 7段:a,b,c,a,e,f,g.
-//			   eg:数码管1的a段亮-->COM1=1,L1=0.
+//			   eg:数码管1的a段亮-->P_DT_COM1=1,P_DT_L1=0.
 //===============================================================
 void MF0_ISR(void)
 {
 	_t0af=0;                    //清定时标志位
 	fg_2ms=1;                //标志位置1
 
-	COM1=COM2=COM3=0;
-	L1=L2=L3=L4=L5=L6=L7=1;
+	P_DT_COM1=P_DT_COM2=P_DT_COM3=0;
+	P_DT_L1=P_DT_L2=P_DT_L3=P_DT_L4=P_DT_L5=P_DT_L6=P_DT_L7=1;
 	if(c_ModeSleep == R_WorkMode) return;
 	if (!fg_BlinkDigitalTube){
 		
@@ -35,68 +35,68 @@ void MF0_ISR(void)
 		{
 			case 0x00:
 				if(F_display_data1_l1)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l1)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l1)
-					COM3=1;
-				L1=0;
+					P_DT_COM3=1;
+				P_DT_L1=0;
 				break;
 			case 0x01:
 				if(F_display_data1_l2)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l2)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l2)
-					COM3=1;
-				L2=0;
+					P_DT_COM3=1;
+				P_DT_L2=0;
 				break;
 			case 0x02:
 				if(F_display_data1_l3)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l3)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l3)
-					COM3=1;
-			  	L3=0;
+					P_DT_COM3=1;
+			  	P_DT_L3=0;
 				break;
 			case 0x03:
 				if(F_display_data1_l4)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l4)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l4)
-					COM3=1;
-				L4=0;
+					P_DT_COM3=1;
+				P_DT_L4=0;
 				break;
 			case 0x04:
 				if(F_display_data1_l5)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l5)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l5)
-					COM3=1;
+					P_DT_COM3=1;
 				else
-					COM3=0;
-				L5=0;
+					P_DT_COM3=0;
+				P_DT_L5=0;
 				break;
 			case 0x05:
 				if(F_display_data1_l6)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l6)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l6)
-					COM3=1;
-				L6=0;
+					P_DT_COM3=1;
+				P_DT_L6=0;
 				break;
 			case 0x06:
 				if(F_display_data1_l7)
-					COM1=1;
+					P_DT_COM1=1;
 				if(F_display_data2_l7)
-					COM2=1;
+					P_DT_COM2=1;
 				if(F_display_data3_l7)
-					COM3=1;
-				L7=0;
+					P_DT_COM3=1;
+				P_DT_L7=0;
 				break;
 			default:
 			  	break;

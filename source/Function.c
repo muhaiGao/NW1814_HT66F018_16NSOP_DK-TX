@@ -93,7 +93,7 @@ void ModeSleep(void)
 	}
 	if(!P_LED)P_LED = 1;//P_LED Off
 	fg_BlinkDigitalTube = 0;
-	COM1 = COM2 = COM3 = 0;
+	P_DT_COM1 = P_DT_COM2 = P_DT_COM3 = 0;
 #endif
 	HaltMode_Init();
 	//INT1S1，INT1S0：INT1(PB1)脚中断边沿控制位,01:上升沿中断.
@@ -195,7 +195,7 @@ void LEDDisplay(void)
 		}
 		if(!P_LED)P_LED = 1;//P_LED Off
 		fg_BlinkDigitalTube = 0;
-		COM1 = COM2 = COM3 = 0;
+		P_DT_COM1 = P_DT_COM2 = P_DT_COM3 = 0;
 		return;
 	}
 	
