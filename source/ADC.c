@@ -499,13 +499,13 @@ void BatAD_Dete(void)
 		if((fg_PowerIn) && (R_BatLevel < BAT_LVL_MAX)){
 			if((c_ModeInit == R_WorkMode) ||(c_ModeBatterLow == R_WorkMode)){
 			   //正在充电,LED呼吸灯.
-			   R_LedMode = C_LED_BREATH;
+			   R_LedMode = c_ModeLedBreath;
 			   if (BAT_LVL_MIN == R_BatLevel){
 				   fg_BatDetePowerOn = 1;
 			   }
 			}else{
 			   //加热状态下常亮.
-			   R_LedMode = C_LED_ON;
+			   R_LedMode = c_ModeLedOn;
 			}
 			
 			if(c_ModeBatterLow == R_WorkMode){
@@ -515,14 +515,14 @@ void BatAD_Dete(void)
 			
 		}else if((R_BatLevel >= BAT_LVL_MAX) ||((0 == fg_PowerIn) && (R_BatLevel > BAT_LVL_MIN) && (R_BatLevel < BAT_LVL_MAX))){
 		   //充满电或不充电但电量>=1,LED常亮.
-		   R_LedMode = C_LED_ON;
+		   R_LedMode = c_ModeLedOn;
 		}else{
 			if(c_ModeSleep != R_WorkMode){
 			   //电量=0.电量低,LED和数码管同时闪烁.
 			   R_BatLevel_Count0++;
 			   if(R_BatLevel_Count0 >= 5){
 				   R_BatLevel_Count0 = 0;
-				   R_LedMode = C_LED_FLASH;
+				   R_LedMode = c_ModeLedFlash;
 				   R_WorkMode = c_ModeBatterLow;
 			   }
 			}

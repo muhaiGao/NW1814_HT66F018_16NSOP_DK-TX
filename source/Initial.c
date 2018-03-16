@@ -607,10 +607,10 @@ void User_Init(void)
 	/*IO Setting*/
 	P_HEATING   = HEATING_OFF;//关闭加热,=0 关闭, =1 打开加热.
 	P_HEATING_C = 0;
-	P_LED = 0;//开机LED on
+	P_LED = C_LED_ON;//开机LED on
 	P_LED_C = 0;
 	if(!LED_PWM_T1ON){
-		P_LED = 0;
+		P_LED = C_LED_ON;
 		LED_PWM_T1CP = 1;
 		LED_PWM_T1ON = 1;
 		PWMChange(C_PWM_PERIO_INIT,C_PWM_DUTY_INIT);
@@ -658,7 +658,7 @@ void TimeSet_Init(void)
 void Variable_Init(void)
 {
 	//LED
-	R_LedMode = C_LED_OFF;		  //LED 显示模式.
+	R_LedMode = c_ModeLedOff;		  //LED 显示模式.
 	R_LedDirFlag = 0; 		  //呼吸灯亮灭方向标志.
 	R_LedDutyCycle = 0;		  //用于存放占空比.
 	

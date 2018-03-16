@@ -91,7 +91,7 @@ void ModeSleep(void)
 		LED_PWM_T1CP = 0;
 		LED_PWM_T1ON = 0;
 	}
-	P_LED = 1;//P_LED Off
+	P_LED = C_LED_OFF;//P_LED Off
 	fg_BlinkDigitalTube = 0;
 	P_DT_COM1 = 0;
 	P_DT_COM2 = 0;
@@ -109,7 +109,7 @@ void ModeSleep(void)
 	_int1f = 0;//INT1 ÖÐ¶ÏÇëÇó±êÖ¾Î»,Çå0.
 	
 	fg_ModeUpdate = 1;
-//	if(P_LED )P_LED = 0;
+//	if(P_LED )P_LED = C_LED_ON;
 }
 
 //===============================================================
@@ -196,28 +196,28 @@ void LEDDisplay(void)
 			LED_PWM_T1CP = 0;
 			LED_PWM_T1ON = 0;
 		}
-		if(!P_LED)P_LED = 1;//P_LED Off
+		if(!P_LED)P_LED = C_LED_OFF;//P_LED Off
 		fg_BlinkDigitalTube = 0;
 		P_DT_COM1 = P_DT_COM2 = P_DT_COM3 = 0;
 		return;
 	}
 #endif
 	
-	if (C_LED_BREATH != R_LedMode){
+	if (c_ModeLedBreath != R_LedMode){
 		if(LED_PWM_T1ON){
 			LED_PWM_T1CP = 0;
 			LED_PWM_T1ON = 0;
 		}
 	}
-	if(C_LED_FLASH != R_LedMode)	fg_BlinkDigitalTube = 0;
+	if(c_ModeLedFlash != R_LedMode)	fg_BlinkDigitalTube = 0;
 	
 	switch (R_LedMode)
 	{
-		case C_LED_ON://LED On,³£ÁÁ.
-			if(P_LED)P_LED = 0;
+		case c_ModeLedOn://LED On,³£ÁÁ.
+			if(P_LED)P_LED = C_LED_ON;
 			break;
 			
-		case C_LED_BREATH://ºôÎüµÆ.
+		case c_ModeLedBreath://ºôÎüµÆ.
 			if(!LED_PWM_T1ON){
 				LED_PWM_T1CP = 1;
 				LED_PWM_T1ON = 1;
@@ -225,13 +225,13 @@ void LEDDisplay(void)
 			}
 			break;
 			
-		case C_LED_FLASH://ÉÁË¸.
-			P_LED = 1;
+		case c_ModeLedFlash://ÉÁË¸.
+			P_LED = C_LED_OFF;
 			fg_BlinkDigitalTube = 1;
 			break;
 		
-		case C_LED_OFF://LED Off,Ãð
-			if(!P_LED )P_LED = 1;
+		case c_ModeLedOff://LED Off,Ãð
+			if(!P_LED )P_LED = C_LED_OFF;
 			break;
 			
 		default:
@@ -351,7 +351,7 @@ void Time_Base(void)
 		if (++R_Time100msCount >= C_100MS){
 			R_Time100msCount = 0;
 			fg_100ms = 1;
-			if(c_ModeSleep != R_WorkMode) P_LED = 0;
+			if(c_ModeSleep != R_WorkMode) P_LED = C_LED_ON;
 			fg_BlinkDigitalTube = 0;
 		}
 	}else{		

@@ -24,9 +24,9 @@ typedef union {
 
 /*****************************IO Define***************************/
 //#define  Useless         	_pa0
-#define  P_DT_COM3       	_pa1
+#define  P_DT_COM3       	_pa1 //DT:digital tube 数码管
 //#define  Useless         	_pa2
-#define  P_DT_COM2       	_pa3
+#define  P_DT_COM2       	_pa3 //DT:digital tube 数码管
 #define  P_NTC_AD     		_pa4
 #define  P_DT_L3         	_pa5
 #define  P_DT_L4         	_pa6
@@ -57,8 +57,8 @@ typedef union {
 /*****************************Mode Define*************************/
 
 /**************************** CUSTOM *****************************/
-#define HEATING_ON       	1
 #define HEATING_OFF      	0
+#define HEATING_ON       	1
 /**************************** CUSTOM *****************************/
 
 /**************************** TIME *******************************/
@@ -72,10 +72,12 @@ typedef union {
 /**************************** TIME *******************************/
 
 /**************************** LED  *******************************/
-#define C_LED_OFF					0
-#define C_LED_ON					1
-#define C_LED_FLASH					2
-#define C_LED_BREATH				3	 //LED呼吸灯模式.
+#define C_LED_ON					0
+#define C_LED_OFF					1
+#define c_ModeLedOff				0
+#define c_ModeLedOn					1
+#define c_ModeLedFlash				2
+#define c_ModeLedBreath				3	 //LED呼吸灯模式.
 #define C_LED_BREATH_SPEED 		    17   //Breathing light 呼吸灯亮灭速度控制 值越小速度越快.//注意控制i类型的范围.
 //Period周期单位为2uS,Period取值范围是1~1024,DutyCycle取值范围是0~Period
 #define C_PWM_PERIO_INIT			200
